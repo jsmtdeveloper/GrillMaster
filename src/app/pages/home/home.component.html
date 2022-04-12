@@ -1,0 +1,55 @@
+<div class="container padding-bottom">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-md-offset-3">
+      <h1>Assessment Grill Master</h1>
+      <div class="row">
+        <h3>Conditions</h3>
+        <span>
+          Please solve this task within one week. It should take you 2 to 4 hours. Send the source code
+          (Visual Studio project incl. CS files), compressed as ZIP file, to your contact at isolutions.
+          The solution should be written in .NET / C#. It’s also possible to write it in Java, JavaScript or
+          any other common programming language.
+        </span>
+        <h3>Scope</h3>
+        <span>
+          Help our master barbecue chef to optimize order in which barbecue items are grilled. Since the
+          space on the grill is limited and different grill items have different sizes, you need to calculate
+          the optimal schedule for grilling. The aim is to optimize the time for barbecuing the entire
+          menu. The grill measures 20cm x 30cm. The cooking time is the same for all barbecue items.<br /><br />
+          A REST API provides you with different grill menus. The service returns a list of different pieces
+          of meat with the required space. Your solution calculates the order in which the food is placed
+          on the grill and at the same time optimizes the duration of the entire meal. The console
+          displays how many rounds are needed to grill the entire menu.<br /><br />
+          Our REST API service provides you with different menus so that you can test your software with
+          different configurations. The solution should be implemented generically and output the
+          rounds for each grill menu. The output could look like this:
+          <br><br>
+          Also, the sum of the grill rounds of all menus must be displayed.<br><br>
+          REST API Service provides the following entities:
+          <ul>
+            <li>GrillMenus:16 different BBQ menus</li>
+            <li>GrillMenuItems: various grilled goods including size (length x
+              width)</li>
+            <li>GrillMenuItemQuantities: Number of grilled
+              products per menu</li>
+          </ul>
+
+          In the evaluation we will look at the following points:
+          <ul>
+            <li>Code Quality</li>
+            <li>Algorithm</li>
+            <li>Sustainability and readability of the source code</li>
+            <li>Documentation of the source code</li>
+          </ul>
+          The user interface won’t affect the rating.
+          <h3>Access</h3>
+          <strong>REST API: </strong> <a
+            href="http://isol-grillassessment.azurewebsites.net/swagger/docs/v1">http://isol-grillassessment.azurewebsites.net/swagger/docs/v1</a>
+          <br>
+          <strong>Swagger UI: </strong> <a
+            href="http://isol-grillassessment.azurewebsites.net/swagger/ui/index">http://isol-grillassessment.azurewebsites.net/swagger/ui/index</a><br>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
