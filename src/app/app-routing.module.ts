@@ -6,8 +6,8 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'grill', component: GrillComponent },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/homr', pathMatch: 'full' }
 ];
 
 @NgModule({
