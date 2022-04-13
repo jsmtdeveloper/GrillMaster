@@ -1,1 +1,14 @@
-<p>grill works!</p>
+<div class="container padding-bottom">
+  <div class="row grill">
+    <div *ngFor="let grillMenu of grillMenuList | async">
+      <div class="grill-menu">
+        <h3 class="grill-name">{{grillMenu.menu}}</h3>
+        <div *ngFor="let item of grillMenu.items">
+          <h4>{{item.name}}</h4>
+          <span>Quantity: {{item.quantity}} - Width: {{item.width}} - Length: {{item.length}}</span>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>

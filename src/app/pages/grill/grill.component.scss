@@ -1,0 +1,25 @@
+.grill-menu {
+  border: 1px solid rgb(120, 118, 118);
+  min-height: 250px;
+  min-width: 250px;
+  margin: 10px;
+  padding: 10px;
+  position: relative;
+  border-radius: 2%;
+  box-shadow: 3px 3px rgb(225, 222, 222);
+}
+
+.grill {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-flow: row wrap;
+  flex-direction: row;
+  align-content: space-around;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.grill-name {
+  border-bottom: 1px solid rgb(120, 118, 118);
+}
