@@ -9,7 +9,7 @@ import { Menu } from '../models/interface/menu.inteface';
   providedIn: 'root'
 })
 export class GrillMenuService {
-  readonly baseUrlApi = 'http://isol-grillassessment.azurewebsites.net/api';
+  readonly baseUrlApi = 'https://isol-grillassessment.azurewebsites.net/api';
 
   constructor(private readonly _httpClient: HttpClient) {}
 
