@@ -7,6 +7,9 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 
+/**
+ * App module definition
+ */
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,10 +19,7 @@ import { PagesModule } from './pages/pages.module';
     AppRoutingModule,
     PagesModule
   ],
-  providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

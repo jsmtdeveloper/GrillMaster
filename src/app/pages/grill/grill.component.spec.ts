@@ -8,9 +8,8 @@ describe('GrillComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GrillComponent ]
-    })
-    .compileComponents();
+      declarations: [GrillComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

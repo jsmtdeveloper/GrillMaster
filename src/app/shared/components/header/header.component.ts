@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * App header definition
+ */
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  title = 'Angular Web Generator - AWG';
-  isUserLoged: boolean = false;
-
-  constructor() {}
+  /**Title of the application */
+  title = 'Grill Master - Jeison stiven';
 }

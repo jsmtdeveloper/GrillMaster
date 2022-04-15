@@ -12,7 +12,7 @@
   <ng-container *ngIf="!loading;else loader">
     <h1>Today's menus!</h1>
     <div class="row grill">
-      <div *ngFor="let grillMenu of barbecuingService.grillMenuList$ | async">
+      <div *ngFor="let grillMenu of grillService.grillMenuList$ | async">
         <div class="grill-menu">
           <h3 class="grill-name">{{grillMenu.menu}}</h3>
           <div *ngFor="let item of grillMenu.items">
@@ -22,7 +22,6 @@
               <li>Width: {{item.width}}</li>
               <li>Length: {{item.length}}</li>
             </ul>
-
           </div>
         </div>
       </div>

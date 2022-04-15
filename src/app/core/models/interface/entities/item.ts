@@ -1,3 +1,4 @@
+/**Item than we print on the components */
 export interface Item {
   $id: string;
   id: string;
