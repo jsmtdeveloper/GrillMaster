@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GrillMenuService } from './grill-menu.service';
+import { GrillMenuApiService } from './grill-menu-api.service';
 
-describe('GrillMenuService', () => {
-  let service: GrillMenuService;
+describe('GrillMenuApiService', () => {
+  let service: GrillMenuApiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GrillMenuService);
+    service = TestBed.inject(GrillMenuApiService);
   });
 
   it('should be created', () => {

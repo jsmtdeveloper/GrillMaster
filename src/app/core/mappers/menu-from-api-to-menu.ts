@@ -3,7 +3,7 @@ import { MenuFromApi } from '../models/interface/api/menu-from-api';
 import { Item } from '../models/interface/entities/item';
 import { Menu } from '../models/interface/entities/menu';
 
-export const mapMenuFromApiToMenu = (menuFromApi: MenuFromApi): Menu => {
+export function mapMenuFromApiToMenu(menuFromApi: MenuFromApi): Menu {
   const { Id: id, $id, menu, items } = menuFromApi;
   return {
     id,
@@ -11,11 +11,11 @@ export const mapMenuFromApiToMenu = (menuFromApi: MenuFromApi): Menu => {
     menu,
     items: mapItemFromApiListToItemList(items)
   } as Menu;
-};
+}
 
-export const mapItemFromApiListToItemList = (
+export function mapItemFromApiListToItemList(
   itemFromApi: itemFromApi[]
-): Item[] => {
+): Item[] {
   return itemFromApi.map((item) => {
     const { Id, $id, Duration, Length, Name, Quantity, Width } = item;
     return {
@@ -28,4 +28,4 @@ export const mapItemFromApiListToItemList = (
       quantity: Quantity
     } as Item;
   });
-};
+}

@@ -1,14 +1,14 @@
 import { Menu } from '@app/core/models/interface/entities/menu';
 import { Grill } from '@app/core/models/interface/grill/grill';
 import { ItemGrill } from '@app/core/models/interface/grill/item-grill';
-import { FitsOnGrill } from '../../models/types/fits-on-grill';
-import { PushItemToBoarParams } from '../../models/types/push-item-to-grill-params';
+import { FitsOnGrill } from '../models/types/fits-on-grill';
+import { PushItemToBoarParams } from '../models/types/push-item-to-grill-params';
 import { FitsOnGrillParams } from '@app/core/models/types/fits-on-grill-params';
 import { DEFAULT_SIZE_GRILL } from './default-grill';
 
 const emptyPlace = '';
 
-export const getCurrentItems = (menu: Menu): ItemGrill[] => {
+export function getCurrentItems(menu: Menu): ItemGrill[] {
   let result: ItemGrill[] = [];
   menu.items.forEach((item) => {
     for (let index = 0; index < item.quantity; index++) {
@@ -16,11 +16,11 @@ export const getCurrentItems = (menu: Menu): ItemGrill[] => {
     }
   });
   return result;
-};
+}
 
-export const getNewGrill = (): Grill => {
+export function getNewGrill(): Grill {
   return { ...DEFAULT_SIZE_GRILL, grillSpace: createDefaultGrill() };
-};
+}
 
 export function placeOnGrill(items: ItemGrill[], grill: string[][]) {
   for (const item of items) {
@@ -29,7 +29,7 @@ export function placeOnGrill(items: ItemGrill[], grill: string[][]) {
   return grill;
 }
 
-const placeItemOnGrill = (item: ItemGrill, grill: string[][]) => {
+function placeItemOnGrill(item: ItemGrill, grill: string[][]) {
   const { fits, indexWidth, indexLength } = fitsOnGrill(item, grill);
 
   if (!fits) return [];
@@ -40,9 +40,9 @@ const placeItemOnGrill = (item: ItemGrill, grill: string[][]) => {
     item,
     grill
   });
-};
+}
 
-const createDefaultGrill = (): string[][] => {
+function createDefaultGrill(): string[][] {
   let grillWidth = [] as Array<string>;
   let grillLength = [];
 
@@ -53,9 +53,9 @@ const createDefaultGrill = (): string[][] => {
   }
 
   return grillLength;
-};
+}
 
-const fitsOnGrill = (item: ItemGrill, grillSpace: string[][]): FitsOnGrill => {
+function fitsOnGrill(item: ItemGrill, grillSpace: string[][]): FitsOnGrill {
   let { width, length } = item;
 
   const fitsStraigth: FitsOnGrill = checkFitsOnGrill({
@@ -76,13 +76,13 @@ const fitsOnGrill = (item: ItemGrill, grillSpace: string[][]): FitsOnGrill => {
   }
 
   return { fits: false };
-};
+}
 
-const checkFitsOnGrill = ({
+function checkFitsOnGrill({
   itemWidth,
   itemLength,
   grillSpace
-}: FitsOnGrillParams): FitsOnGrill => {
+}: FitsOnGrillParams): FitsOnGrill {
   for (const [indexLengthGrill, lengthGrill] of grillSpace.entries()) {
     const indexWidthGrill = lengthGrill.findIndex((w) => w === emptyPlace);
 
@@ -118,14 +118,14 @@ const checkFitsOnGrill = ({
   }
 
   return { fits: false };
-};
+}
 
-const pushItemToGrill = ({
+function pushItemToGrill({
   indexWidth: widthStart,
   indexLength: lengthStart,
   item,
   grill
-}: PushItemToBoarParams) => {
+}: PushItemToBoarParams) {
   const { lengthItem, widthItem } = getItemSizeCheckingRotation(item);
   const id = getItemIdPerEachQuantity(item);
 
@@ -139,14 +139,14 @@ const pushItemToGrill = ({
   }
   item.grilled = true;
   return grill;
-};
+}
 
-const getItemSizeCheckingRotation = (item: ItemGrill) => {
+function getItemSizeCheckingRotation(item: ItemGrill) {
   const lengthItem = item.rotated ? item.width : item.length;
   const widthItem = item.rotated ? item.length : item.width;
   return { lengthItem, widthItem };
-};
+}
 
-const getItemIdPerEachQuantity = (item: ItemGrill) => {
+function getItemIdPerEachQuantity(item: ItemGrill) {
   return `${item.$id}-${item.quantity}`;
-};
+}

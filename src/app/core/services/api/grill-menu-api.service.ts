@@ -8,7 +8,7 @@ import { Observable, map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GrillMenuService {
+export class GrillMenuApiService {
   private readonly baseUrlApi =
     'https://isol-grillassessment.azurewebsites.net/api';
 

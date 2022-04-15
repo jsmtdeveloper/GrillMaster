@@ -1,30 +1,32 @@
 import { Injectable } from '@angular/core';
-import { mapMenuToMenuGrill } from '@app/core/mappers/MenuToMenuGrill';
+import { mapMenuToMenuGrill } from '@app/core/mappers/menu-to-menu-grill';
 import { Menu } from '@app/core/models/interface/entities/menu';
 import { ItemGrill } from '@app/core/models/interface/grill/item-grill';
 import { MenuGrill } from '@app/core/models/interface/grill/menu-grill';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { GrillMenuService } from '../api/grill-menu.service';
 import {
   getCurrentItems,
   getNewGrill,
   placeOnGrill
-} from './BarbecuingFunctions';
+} from '../../library/GrillFunctions';
+import { GrillMenuApiService } from '../api/grill-menu-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BarbecuingService {
+export class GrillService {
   private _grillMenuList: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(
     []
   );
   readonly grillMenuList$: Observable<Menu[]> =
     this._grillMenuList.asObservable();
 
-  constructor(private _grillMenuService: GrillMenuService) {}
+  constructor(private _grillMenuApiService: GrillMenuApiService) {}
 
   loadData() {
-    this._grillMenuService.getGrillMenu().subscribe((res) => this.setData(res));
+    this._grillMenuApiService
+      .getGrillMenu()
+      .subscribe((res) => this.setData(res));
   }
 
   startToGrill() {

@@ -1,9 +1,9 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { GrillMenuService } from './services/api/grill-menu.service';
-import { BarbecuingService } from './services/utils/barbecuing.service';
+import { GrillMenuApiService } from './services/api/grill-menu-api.service';
+import { GrillService } from './services/utils/grill.service';
 
-const apiServices = [GrillMenuService];
-const utilsServices = [BarbecuingService];
+const apiServices = [GrillMenuApiService];
+const utilsServices = [GrillService];
 @NgModule({
   providers: [...apiServices, ...utilsServices]
 })
