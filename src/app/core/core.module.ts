@@ -1,8 +1,11 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { GrillMenuService } from './services/grill-menu.service';
+import { GrillMenuService } from './services/api/grill-menu.service';
+import { BarbecuingService } from './services/utils/barbecuing.service';
 
+const apiServices = [GrillMenuService];
+const utilsServices = [BarbecuingService];
 @NgModule({
-  providers: [GrillMenuService]
+  providers: [...apiServices, ...utilsServices]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

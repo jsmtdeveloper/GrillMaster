@@ -1,24 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Menu } from '@app/core/models/interface/menu.inteface';
-import { GrillMenuService } from '@app/core/services/grill-menu.service';
-import { Subject } from 'rxjs';
+import { MenuGrill } from '@app/core/models/interface/grill/menu-grill.interface';
+import { BarbecuingService } from '@app/core/services/utils/barbecuing.service';
 
 @Component({
   templateUrl: './grill.component.html',
   styleUrls: ['./grill.component.scss']
 })
 export class GrillComponent implements OnInit {
-  grillMenuList: Subject<Menu[]> = new Subject();
-  loading: boolean = false;
-  constructor(private readonly _grillMenuService: GrillMenuService) {
-    this.grillMenuList.subscribe((res) => {
-      if (res?.length > 0) console.log('Begins!');
+  loading: boolean = true;
+  resultGrill: MenuGrill[] = [];
+
+  constructor(readonly barbecuingService: BarbecuingService) {
+    this.barbecuingService.grillMenuList$.subscribe((res) => {
+      if (res && res.length > 0) this.loading = false;
     });
   }
 
   ngOnInit(): void {
-    this._grillMenuService.getGrillMenu().subscribe((res) => {
-      this.grillMenuList.next(res);
+    this.barbecuingService.loadData();
+  }
+
+  startGrill() {
+    this.loading = true;
+    this.barbecuingService.startGrill().then((res) => {
+      this.loading = false;
+      this.resultGrill = res;
     });
   }
 }

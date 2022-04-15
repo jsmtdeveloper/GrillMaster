@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { mapMenuFromApiToMenu } from '@app/core/mappers/menu-from-api-to-menu';
+import { MenuFromApi } from '@app/core/models/interface/api/menu-from-api.interface';
+import { Menu } from '@app/core/models/interface/entities/menu.inteface';
 import { Observable, map } from 'rxjs';
-import { mapMenuFromApiToMenu } from '../mappers/menu-from-api-to-menu';
-import { MenuFromApi } from '../models/interface/api/menu-from-api';
-import { Menu } from '../models/interface/menu.inteface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GrillMenuService {
-  readonly baseUrlApi = 'https://isol-grillassessment.azurewebsites.net/api';
+  private readonly baseUrlApi =
+    'https://isol-grillassessment.azurewebsites.net/api';
 
   constructor(private readonly _httpClient: HttpClient) {}
 

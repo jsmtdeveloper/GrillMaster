@@ -1,6 +1,18 @@
 <div class="container padding-bottom">
-  <div class="row grill">
-    <div *ngFor="let grillMenu of grillMenuList | async">
+  <button [disabled]="loading" (click)="startGrill()">Lets start!</button>
+
+  <div *ngIf="resultGrill.length > 0" class="row grill-results">
+    <div *ngFor="let item of resultGrill">
+      <span>{{item.name}} - {{item.rounds.length}} Rounds</span>
+    </div>
+  </div>
+
+  <div *ngIf="!loading;else loader" class="row grill">
+
+    <!-- <div *ngFor="let grillMenu of grillMenuList$ | async">
+    </div> -->
+
+    <div *ngFor="let grillMenu of barbecuingService.grillMenuList$ | async">
       <div class="grill-menu">
         <h3 class="grill-name">{{grillMenu.menu}}</h3>
         <div *ngFor="let item of grillMenu.items">
@@ -8,7 +20,12 @@
           <span>Quantity: {{item.quantity}} - Width: {{item.width}} - Length: {{item.length}}</span>
         </div>
       </div>
-      <br>
     </div>
+
+
   </div>
 </div>
+
+<ng-template #loader>
+  Loading...
+</ng-template>
