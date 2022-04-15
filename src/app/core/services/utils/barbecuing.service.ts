@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Menu } from '@app/core/models/interface/entities/menu.inteface';
-import { ItemGrill } from '@app/core/models/interface/grill/item-grill.interface';
-import { MenuGrill } from '@app/core/models/interface/grill/menu-grill.interface';
+import { mapMenuToMenuGrill } from '@app/core/mappers/MenuToMenuGrill';
+import { Menu } from '@app/core/models/interface/entities/menu';
+import { ItemGrill } from '@app/core/models/interface/grill/item-grill';
+import { MenuGrill } from '@app/core/models/interface/grill/menu-grill';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { GrillMenuService } from '../api/grill-menu.service';
 import {
   getCurrentItems,
-  getNewBoard,
-  placeInBoard
+  getNewGrill,
+  placeOnGrill
 } from './BarbecuingFunctions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BarbecuingService {
-  private currentMenus: Menu[] = [];
   private _grillMenuList: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(
     []
   );
@@ -27,41 +27,42 @@ export class BarbecuingService {
     this._grillMenuService.getGrillMenu().subscribe((res) => this.setData(res));
   }
 
-  private setData(res: Menu[]) {
-    this._grillMenuList.next(res);
-    this.currentMenus = res;
-  }
-
-  async startGrill() {
+  startToGrill() {
     let menusResult = [];
-
-    for await (const menu of this.currentMenus) {
-      menusResult.push(await this.grillMenu(menu));
+    for (const currentMenu of this.getCurrentMenuList()) {
+      menusResult.push(this.grillMenu(currentMenu));
     }
-    // return this.grillMenu(this.currentMenus[0]);
     return menusResult;
   }
 
-  async grillMenu(menu: Menu): Promise<MenuGrill> {
-    let menuOnGrill: MenuGrill = {
-      menuId: menu.$id,
-      name: menu.menu,
-      rounds: []
-    };
+  grillMenu(menu: Menu): MenuGrill {
     const noItems = !menu || menu?.items.length === 0;
-    if (noItems) return menuOnGrill;
+    if (noItems) return {} as MenuGrill;
 
+    const menuOnGrill: MenuGrill = mapMenuToMenuGrill(menu);
     const currentItems: ItemGrill[] = getCurrentItems(menu);
+    const existItemsToGrill = () => {
+      return currentItems.filter((w) => !w.grilled).length != 0;
+    };
+
     do {
-      const currentBoard = getNewBoard();
+      const currentGrill = getNewGrill();
 
-      await placeInBoard(
+      placeOnGrill(
         currentItems.filter((w) => !w.grilled),
-        currentBoard.boardSpace
+        currentGrill.grillSpace
       );
+      menuOnGrill.rounds.push(currentGrill);
+    } while (existItemsToGrill());
 
-      menuOnGrill.rounds.push(currentBoard);
-    } while (currentItems.filter((w) => !w.grilled).length != 0);
     return menuOnGrill;
+  }
+
+  private setData(res: Menu[]) {
+    this._grillMenuList.next(res);
+  }
+
+  private getCurrentMenuList() {
+    return this._grillMenuList?.value || [];
   }
 }

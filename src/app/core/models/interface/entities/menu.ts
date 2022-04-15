@@ -1,4 +1,4 @@
-import { Item } from './item.inteface';
+import { Item } from './item';
 
 export interface Menu {
   $id: string;

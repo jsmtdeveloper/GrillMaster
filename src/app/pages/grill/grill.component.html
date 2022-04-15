@@ -1,5 +1,5 @@
 <div class="container padding-bottom">
-  <button [disabled]="loading" (click)="startGrill()">Lets start!</button>
+  <button [disabled]="loading" (click)="onStartToGrill()">Lets start!</button>
 
   <div *ngIf="resultGrill.length > 0" class="row grill-results">
     <div *ngFor="let item of resultGrill">

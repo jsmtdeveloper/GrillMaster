@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuGrill } from '@app/core/models/interface/grill/menu-grill.interface';
+import { MenuGrill } from '@app/core/models/interface/grill/menu-grill';
 import { BarbecuingService } from '@app/core/services/utils/barbecuing.service';
 
 @Component({
@@ -20,11 +20,7 @@ export class GrillComponent implements OnInit {
     this.barbecuingService.loadData();
   }
 
-  startGrill() {
-    this.loading = true;
-    this.barbecuingService.startGrill().then((res) => {
-      this.loading = false;
-      this.resultGrill = res;
-    });
+  onStartToGrill() {
+    this.resultGrill = this.barbecuingService.startToGrill();
   }
 }

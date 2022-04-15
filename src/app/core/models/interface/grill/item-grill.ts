@@ -1,4 +1,4 @@
-import { Item } from '../entities/item.inteface';
+import { Item } from '../entities/item';
 
 export interface ItemGrill extends Item {
   grilled: boolean;

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { mapMenuFromApiToMenu } from '@app/core/mappers/menu-from-api-to-menu';
-import { MenuFromApi } from '@app/core/models/interface/api/menu-from-api.interface';
-import { Menu } from '@app/core/models/interface/entities/menu.inteface';
+import { MenuFromApi } from '@app/core/models/interface/api/menu-from-api';
+import { Menu } from '@app/core/models/interface/entities/menu';
 import { Observable, map } from 'rxjs';
 
 @Injectable({

@@ -1,4 +1,4 @@
-import { itemFromApi } from './item-from-api.interface';
+import { itemFromApi } from './item-from-api';
 
 export interface MenuFromApi {
   Id: string;

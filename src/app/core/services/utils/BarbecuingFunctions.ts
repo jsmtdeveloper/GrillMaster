@@ -1,9 +1,10 @@
-import { isNgTemplate } from '@angular/compiler';
-import { Menu } from '@app/core/models/interface/entities/menu.inteface';
-import { BoardGrill } from '@app/core/models/interface/grill/board-grill.interface';
-import { ItemGrill } from '@app/core/models/interface/grill/item-grill.interface';
-import { DefaultSizeBoardGrill } from './defaultSizeBoardGrill';
-import { FitsOnBoard } from './fitsOnBoard';
+import { Menu } from '@app/core/models/interface/entities/menu';
+import { Grill } from '@app/core/models/interface/grill/grill';
+import { ItemGrill } from '@app/core/models/interface/grill/item-grill';
+import { FitsOnGrill } from '../../models/types/fits-on-grill';
+import { PushItemToBoarParams } from '../../models/types/push-item-to-grill-params';
+import { FitsOnGrillParams } from '@app/core/models/types/fits-on-grill-params';
+import { DEFAULT_SIZE_GRILL } from './default-grill';
 
 const emptyPlace = '';
 
@@ -17,97 +18,101 @@ export const getCurrentItems = (menu: Menu): ItemGrill[] => {
   return result;
 };
 
-export const getNewBoard = (): BoardGrill => {
-  return { ...DefaultSizeBoardGrill, boardSpace: [...createDefaultBoard()] };
+export const getNewGrill = (): Grill => {
+  return { ...DEFAULT_SIZE_GRILL, grillSpace: createDefaultGrill() };
 };
 
-export async function placeInBoard(items: ItemGrill[], board: string[][]) {
-  return new Promise(async (resolve, rejects) => {
-    for await (const item of items) {
-      const hola = placeItemInBoard(item, board);
-    }
-
-    resolve(board);
-    //console.table(board);
-  });
+export function placeOnGrill(items: ItemGrill[], grill: string[][]) {
+  for (const item of items) {
+    placeItemOnGrill(item, grill);
+  }
+  return grill;
 }
 
-const placeItemInBoard = (item: ItemGrill, board: string[][]) => {
-  const { fits, indexWidth, indexLength } = fitsInBoard(item, board);
+const placeItemOnGrill = (item: ItemGrill, grill: string[][]) => {
+  const { fits, indexWidth, indexLength } = fitsOnGrill(item, grill);
 
   if (!fits) return [];
 
-  return pushItemToBoard({
+  return pushItemToGrill({
     indexWidth: Number(indexWidth),
     indexLength: Number(indexLength),
     item,
-    board
+    grill
   });
 };
 
-const createDefaultBoard = (): string[][] => {
+const createDefaultGrill = (): string[][] => {
   let grillWidth = [] as Array<string>;
   let grillLength = [];
 
-  grillWidth.length = DefaultSizeBoardGrill.width;
-  grillWidth.fill('');
-  for (let index = 0; index < DefaultSizeBoardGrill.length; index++) {
+  grillWidth.length = DEFAULT_SIZE_GRILL.width;
+  grillWidth.fill(emptyPlace);
+  for (let index = 0; index < DEFAULT_SIZE_GRILL.length; index++) {
     grillLength.push([...grillWidth]);
   }
 
   return grillLength;
 };
 
-const fitsInBoard = (item: ItemGrill, boardSpace: string[][]): FitsOnBoard => {
+const fitsOnGrill = (item: ItemGrill, grillSpace: string[][]): FitsOnGrill => {
   let { width, length } = item;
-  let result: FitsOnBoard;
 
-  result = checkFitsInBoard(width, length, boardSpace);
-  if (result.fits) return result;
+  const fitsStraigth: FitsOnGrill = checkFitsOnGrill({
+    itemWidth: width,
+    itemLength: length,
+    grillSpace
+  });
+  if (fitsStraigth.fits) return fitsStraigth;
 
-  result = checkFitsInBoard(length, width, boardSpace);
-  if (result.fits) {
+  const fitsRotated: FitsOnGrill = checkFitsOnGrill({
+    itemWidth: length,
+    itemLength: width,
+    grillSpace
+  });
+  if (fitsRotated.fits) {
     item.rotated = true;
-    return result;
+    return fitsRotated;
   }
 
   return { fits: false };
 };
 
-const checkFitsInBoard = (
-  width: number,
-  length: number,
-  boardSpace: string[][]
-): FitsOnBoard => {
-  for (const [indexLength, lengthBoard] of boardSpace.entries()) {
-    const indexWidth = lengthBoard.findIndex((w) => w === emptyPlace);
+const checkFitsOnGrill = ({
+  itemWidth,
+  itemLength,
+  grillSpace
+}: FitsOnGrillParams): FitsOnGrill => {
+  for (const [indexLengthGrill, lengthGrill] of grillSpace.entries()) {
+    const indexWidthGrill = lengthGrill.findIndex((w) => w === emptyPlace);
 
-    if (indexWidth !== -1) {
-      let lengthTmp = length;
-      let widthTmp = width;
+    if (indexWidthGrill !== -1) {
+      let remainingLength = itemLength;
+      let remainingwidth = itemWidth;
       for (
-        let indexLengthTmp = indexLength;
-        indexLengthTmp < boardSpace.length && lengthTmp > 0;
-        indexLengthTmp++
+        let indexLength = indexLengthGrill;
+        indexLength < grillSpace.length && remainingLength > 0;
+        indexLength++
       ) {
-        widthTmp = width;
+        remainingwidth = itemWidth;
         for (
-          let indexWidthTmp = indexWidth;
-          indexWidthTmp < boardSpace[indexLengthTmp].length && widthTmp > 0;
+          let indexWidthTmp = indexWidthGrill;
+          indexWidthTmp < grillSpace[indexLength].length && remainingwidth > 0;
           indexWidthTmp++
         ) {
-          const place = boardSpace[indexLengthTmp][indexWidthTmp];
-          if (place !== emptyPlace) break;
-          widthTmp--;
+          const placeValue = grillSpace[indexLength][indexWidthTmp];
+          if (placeValue !== emptyPlace) break;
+
+          remainingwidth--;
         }
-        lengthTmp--;
+        remainingLength--;
       }
-      const fits = lengthTmp === 0 && widthTmp === 0;
+      const fits = remainingLength === 0 && remainingwidth === 0;
       if (fits)
         return {
           fits,
-          indexWidth: indexWidth,
-          indexLength: indexLength
+          indexWidth: indexWidthGrill,
+          indexLength: indexLengthGrill
         };
     }
   }
@@ -115,30 +120,33 @@ const checkFitsInBoard = (
   return { fits: false };
 };
 
-interface pushItemToBoarParams {
-  indexWidth: number;
-  indexLength: number;
-  item: ItemGrill;
-  board: string[][];
-}
-
-const pushItemToBoard = ({
-  indexWidth,
-  indexLength,
+const pushItemToGrill = ({
+  indexWidth: widthStart,
+  indexLength: lengthStart,
   item,
-  board
-}: pushItemToBoarParams) => {
-  const lengthItem = item.rotated ? item.width : item.length;
-  const widthItem = item.rotated ? item.length : item.width;
-  const id = `${item.$id}-${item.quantity}`;
+  grill
+}: PushItemToBoarParams) => {
+  const { lengthItem, widthItem } = getItemSizeCheckingRotation(item);
+  const id = getItemIdPerEachQuantity(item);
 
-  const lengtTmp = indexLength + lengthItem;
-  for (let index = indexLength; index < lengtTmp; index++) {
-    const widthTmp = indexWidth + widthItem;
-    for (let index1 = indexWidth; index1 < widthTmp; index1++) {
-      board[index][index1] = id;
+  const lengthEnd = lengthStart + lengthItem;
+
+  for (let index = lengthStart; index < lengthEnd; index++) {
+    const widthEnd = widthStart + widthItem;
+    for (let index1 = widthStart; index1 < widthEnd; index1++) {
+      grill[index][index1] = id;
     }
   }
   item.grilled = true;
-  return board;
+  return grill;
+};
+
+const getItemSizeCheckingRotation = (item: ItemGrill) => {
+  const lengthItem = item.rotated ? item.width : item.length;
+  const widthItem = item.rotated ? item.length : item.width;
+  return { lengthItem, widthItem };
+};
+
+const getItemIdPerEachQuantity = (item: ItemGrill) => {
+  return `${item.$id}-${item.quantity}`;
 };

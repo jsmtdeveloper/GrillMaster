@@ -1,7 +1,7 @@
-import { itemFromApi } from '../models/interface/api/item-from-api.interface';
-import { MenuFromApi } from '../models/interface/api/menu-from-api.interface';
-import { Item } from '../models/interface/entities/item.inteface';
-import { Menu } from '../models/interface/entities/menu.inteface';
+import { itemFromApi } from '../models/interface/api/item-from-api';
+import { MenuFromApi } from '../models/interface/api/menu-from-api';
+import { Item } from '../models/interface/entities/item';
+import { Menu } from '../models/interface/entities/menu';
 
 export const mapMenuFromApiToMenu = (menuFromApi: MenuFromApi): Menu => {
   const { Id: id, $id, menu, items } = menuFromApi;
