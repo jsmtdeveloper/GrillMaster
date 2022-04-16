@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('assets/styles/mini-default.min.css');
 
-html, body { height: 100%; width: 100%; margin: 0; }
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.center-item {
+  left: 50%;
+  position: sticky;
+  transform: translate(-50%, -50%);
+}
+
+.center-text {
+  text-align: center;
+}

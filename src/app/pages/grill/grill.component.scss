@@ -1,33 +1,9 @@
-.grill-menu {
-  border: 1px solid #787676;
-  margin: 10px;
-  padding-left: 10px;
-  border-radius: 2%;
-  box-shadow: 3px 3px #e1dede;
-  height: 100%;
-}
-
-.grill {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.grill-results {
-  display: grid;
-  justify-items: center;
-  padding: 10px;
-  border: 1px solid #787676;
-  border-radius: 2%;
-  box-shadow: 3px 3px #e1dede;
-  min-width: 200px;
-  margin: auto;
-  width: 50%;
-}
-
-.grill-name {
-  border-bottom: 1px solid rgb(120, 118, 118);
-}
-
 .padding-bottom {
   padding-bottom: 100px !important;
+}
+
+.grilling-button {
+  margin-top: 35px;
+  width: auto;
+  margin-bottom: -20px;
 }

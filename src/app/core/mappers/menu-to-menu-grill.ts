@@ -10,6 +10,8 @@ export function mapMenuToMenuGrill(menu: Menu): MenuGrill {
   return {
     menuId: menu.$id,
     name: menu.menu,
-    rounds: []
+    rounds: [],
+    itemsGrilled: [],
+    itemsNoGrilled: []
   };
 }

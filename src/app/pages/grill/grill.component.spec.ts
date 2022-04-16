@@ -6,7 +6,7 @@ describe('GrillComponent', () => {
   it('Should create component', async () => {
     const component = await setupTest();
 
-    expect(screen.getByText('Loading..'));
+    expect(screen.getByText("Let's start grilling!"));
   });
 });
 

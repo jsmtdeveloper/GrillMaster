@@ -25,3 +25,12 @@ function createDefaultGrill(): string[][] {
   }
   return grillLength;
 }
+
+/**
+ * Checkes every space of the grill and says if it's empty or not
+ * @returns true or false if the grill its empty or not
+ */
+export function grillIsEmpty(currentGrill: Grill) {
+  const { grillSpace } = currentGrill;
+  return grillSpace.every((length) => length.every((width) => width === EMPTY_VALUE));
+}

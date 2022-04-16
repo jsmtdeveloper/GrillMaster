@@ -1,35 +1,7 @@
 <div class="container padding-bottom">
-  <button [disabled]="loading" (click)="onStartToGrill()">Lets start!</button>
-
-  <div *ngIf="resultGrill.length > 0" class="row grill-results">
-    <h2 class="grill-name">Total rounds: {{totalRounds}}</h2>
-    <div *ngFor="let item of resultGrill">
-      <span><strong>{{item.name}}</strong>: {{item.rounds.length}} Rounds</span>
-    </div>
-
-  </div>
-
-  <ng-container *ngIf="!loading;else loader">
-    <h1>Today's menus!</h1>
-    <div class="row grill">
-      <div *ngFor="let grillMenu of grillService.grillMenuList$ | async">
-        <div class="grill-menu">
-          <h3 class="grill-name">{{grillMenu.menu}}</h3>
-          <div *ngFor="let item of grillMenu.items">
-            <h4>{{item.name}}</h4>
-            <ul>
-              <li>Quantity: {{item.quantity}}</li>
-              <li>Width: {{item.width}}</li>
-              <li>Length: {{item.length}}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-
+  <button class="large grilling-button center-item shadowed" [disabled]="loading" (click)="onStartToGrill()">
+    Let's start grilling!
+  </button>
+  <app-result-grill-listed [resultGrill]="resultGrill" [totalRounds]="totalRounds"></app-result-grill-listed>
+  <app-menus-listed [grillMenuList]="grillService.grillMenuList$ | async" [loading]="loading"></app-menus-listed>
 </div>
-
-<ng-template #loader>
-  Loading...
-</ng-template>

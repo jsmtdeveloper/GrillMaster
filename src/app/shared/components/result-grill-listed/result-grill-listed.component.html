@@ -1,0 +1,10 @@
+<div *ngIf="resultGrill.length > 0" class="row grill-results center-text">
+  <h2 class="grill-name">Total rounds: {{totalRounds}} </h2>
+  <div *ngFor="let item of resultGrill">
+    <span>
+      <strong>{{item.name}}</strong>: {{item.rounds.length}} Rounds
+      <small>- {{item.itemsGrilled.length}} Items grilled</small>
+      <small *ngIf="item.itemsNoGrilled.length > 0">- {{item.itemsNoGrilled.length}} Items ungrilled</small>
+    </span>
+  </div>
+</div>
