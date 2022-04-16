@@ -20,7 +20,6 @@ export function fitsOnGrill(
     length,
     grillSpace
   );
-
   if (fitsStraigth.fits) return fitsStraigth;
 
   const fitsRotated: FitsOnGrill = checkFitsRotated(length, width, grillSpace);
@@ -44,11 +43,12 @@ function checkFitsRotated(
   width: number,
   grillSpace: string[][]
 ): FitsOnGrill {
-  return checkFitsOnGrill({
+  const fitsOnGrillITemRotated: FitsOnGrillParams = {
     itemWidth: length,
     itemLength: width,
     grillSpace
-  });
+  };
+  return checkFitsOnGrill(fitsOnGrillITemRotated);
 }
 
 /**
@@ -63,11 +63,12 @@ function checkFitsStraigth(
   length: number,
   grillSpace: string[][]
 ): FitsOnGrill {
-  return checkFitsOnGrill({
+  const fitsOnGrill: FitsOnGrillParams = {
     itemWidth: width,
     itemLength: length,
     grillSpace
-  });
+  };
+  return checkFitsOnGrill(fitsOnGrill);
 }
 
 /**

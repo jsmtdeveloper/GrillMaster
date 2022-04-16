@@ -1,25 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { FooterComponent } from './footer.component';
 
 describe('FooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
+  it('should create', async () => {
+    const component = await render(FooterComponent, {});
     expect(component).toBeTruthy();
+  });
+
+  it(`should have the author's name and the current year`, async () => {
+    await render(FooterComponent);
+    const author = `©JsmtDeveloper - ${new Date().getFullYear()}`;
+    expect(document.querySelector('.author')?.textContent).toEqual(author);
   });
 });

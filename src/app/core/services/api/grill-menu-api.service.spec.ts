@@ -1,16 +1,9 @@
-import { TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { GrillMenuApiService } from './grill-menu-api.service';
 
 describe('GrillMenuApiService', () => {
-  let service: GrillMenuApiService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(GrillMenuApiService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create', async () => {
+    const grillMenuApiService = await render(GrillMenuApiService);
+    expect(grillMenuApiService).toBeTruthy();
   });
 });

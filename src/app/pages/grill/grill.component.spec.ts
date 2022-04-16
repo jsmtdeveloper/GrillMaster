@@ -1,24 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { GrillService } from '@app/core/services/utils/grill.service';
+import { render, screen } from '@testing-library/angular';
 import { GrillComponent } from './grill.component';
 
 describe('GrillComponent', () => {
-  let component: GrillComponent;
-  let fixture: ComponentFixture<GrillComponent>;
+  it('Should create component', async () => {
+    const component = await setupTest();
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [GrillComponent]
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GrillComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(screen.getByText('Loading..'));
   });
 });
+
+async function setupTest() {
+  const grillServiceMock = {} as GrillService;
+
+  return await render(GrillComponent, {
+    providers: [{ provide: GrillService, useValue: grillServiceMock }]
+  });
+}

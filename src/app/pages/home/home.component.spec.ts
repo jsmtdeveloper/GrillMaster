@@ -1,24 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
+import { HomeComponent } from './home.component';
 
-import { LoginComponent } from './login.component';
-
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [LoginComponent]
-    }).compileComponents();
+describe('HomeComponent', () => {
+  it('Should create componente', async () => {
+    await render(HomeComponent);
+    expect(screen.getByText('Assessment Grill Master'));
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('Should have the docs and swagger links ', async () => {
+    await render(HomeComponent);
+    const docsLink =
+      'http://isol-grillassessment.azurewebsites.net/swagger/docs/v1';
+    expect(screen.getByText(docsLink).getAttribute('href')).toBe(docsLink);
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    const swaggerLink =
+      'http://isol-grillassessment.azurewebsites.net/swagger/ui/index';
+    expect(screen.getByText(swaggerLink).getAttribute('href')).toBe(
+      swaggerLink
+    );
   });
 });

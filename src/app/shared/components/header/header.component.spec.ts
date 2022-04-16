@@ -1,30 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { render, screen } from '@testing-library/angular';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
+  it('should create', async () => {
+    const component = await render(HeaderComponent);
     expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'Angular Web Generator - AWG'`, () => {
-    const fixture = TestBed.createComponent(HeaderComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Angular Web Generator - AWG');
+  it(`should have the header menu buttons`, async () => {
+    const component = await render(HeaderComponent);
+    expect(screen.getByText('Home'));
+    expect(screen.getByText('Grill'));
+    expect(screen.getByText('Documentation'));
   });
 });
