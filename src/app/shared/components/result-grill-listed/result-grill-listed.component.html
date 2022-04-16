@@ -1,10 +1,36 @@
 <div *ngIf="resultGrill.length > 0" class="row grill-results center-text">
-  <h2 class="grill-name">Total rounds: {{totalRounds}} </h2>
-  <div *ngFor="let item of resultGrill">
-    <span>
-      <strong>{{item.name}}</strong>: {{item.rounds.length}} Rounds
-      <small>- {{item.itemsGrilled.length}} Items grilled</small>
-      <small *ngIf="item.itemsNoGrilled.length > 0">- {{item.itemsNoGrilled.length}} Items ungrilled</small>
-    </span>
+
+  <div *ngIf="!menuSelected;else menuSelectedTemplate">
+    <h2 class=" grill-name">Total rounds: {{totalRounds}} </h2>
+    <div *ngFor="let item of resultGrill">
+      <span>
+        <strong>{{item.name}}</strong>: {{item.rounds.length}} Rounds
+        <small>- {{item.itemsGrilled.length}} Items grilled</small>
+        <small *ngIf="item.itemsNoGrilled.length > 0">- {{item.itemsNoGrilled.length}} Items ungrilled</small>
+        - <button class="small" (click)="handlerClickSeeDetails(item)">See details!</button>
+      </span>
+    </div>
   </div>
+
+  <ng-template #menuSelectedTemplate>
+    <div>
+      <span *ngIf="menuSelected">
+        <strong>{{menuSelected.name}}</strong>: {{menuSelected.rounds.length}} Rounds
+        <small>- {{menuSelected.itemsGrilled.length}} Items grilled</small>
+        <small *ngIf="menuSelected.itemsNoGrilled.length > 0">- {{menuSelected.itemsNoGrilled.length}} Items
+          ungrilled</small>
+        - <button class="small" (click)="menuSelected = undefined">Go back!</button>
+      </span>
+      <div *ngFor="let round of menuSelected?.rounds; index as i">
+        <h3>Round {{i+1}}</h3>
+        <div class="grill-preview">
+          <span [ngStyle]="item | styleItemPreview" *ngFor="let item of round | realItemOrder">
+            {{item.name}}
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+
 </div>

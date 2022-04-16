@@ -6,13 +6,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenusListedComponent } from './components/menus-listed/menus-listed.component';
 import { ResultGrillListedComponent } from './components/result-grill-listed/result-grill-listed.component';
+import { StyleItemPreviewPipe } from './pipes/style-item-preview.pipe';
+import { RealItemOrderPipe } from './pipes/real-item-order.pipe';
 
 /**Constant with all the module's components */
 const COMPONENTS = [HeaderComponent, FooterComponent, MenusListedComponent, ResultGrillListedComponent];
 
 /**Shared module definition */
 @NgModule({
-  declarations: [...COMPONENTS, MenusListedComponent, ResultGrillListedComponent],
+  declarations: [...COMPONENTS, MenusListedComponent, ResultGrillListedComponent, StyleItemPreviewPipe, RealItemOrderPipe],
   imports: [CommonModule, RouterModule, HttpClientModule],
   exports: [...COMPONENTS]
 })

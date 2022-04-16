@@ -10,7 +10,7 @@ export function getCurrentItems(menu: Menu): ItemGrill[] {
   let result: ItemGrill[] = [];
   menu.items.forEach((item) => {
     for (let index = 0; index < item.quantity; index++) {
-      result.push({ ...item, quantity: index, grilled: false, canBeGrill: true, rotated: false });
+      result.push({ ...item, $id: item.$id + '-' + index.toString(), quantity: index, grilled: false, canBeGrill: true, rotated: false });
     }
   });
   return result;

@@ -6,7 +6,7 @@ import { DEFAULT_SIZE_GRILL, EMPTY_VALUE } from './default-value';
  * @returns A new grill
  */
 export function getNewGrill(): Grill {
-  return { ...DEFAULT_SIZE_GRILL, grillSpace: createDefaultGrill() };
+  return { ...DEFAULT_SIZE_GRILL, grillSpace: createDefaultGrill(), itemsOnGrill: [] };
 }
 
 /**

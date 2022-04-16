@@ -2,9 +2,16 @@
   display: grid;
   padding: 10px;
   border: 1px solid #787676;
-  border-radius: 2%;
+  border-radius: 1em;
   box-shadow: 3px 3px #e1dede;
-  min-width: 200px;
+  min-width: 325px;
   margin: auto;
   width: 50%;
+}
+
+.grill-preview {
+  width: 30em;
+  height: 20em;
+  border: 1px solid black;
+  display:inline-block;
 }

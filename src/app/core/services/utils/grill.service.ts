@@ -63,7 +63,7 @@ export class GrillService {
 
     do {
       const currentGrill: Grill = getNewGrill();
-      placeOnGrill(itemsToGrill(), currentGrill.grillSpace);
+      placeOnGrill(itemsToGrill(), currentGrill);
 
       if (this.isEmptyAfterTryToGrill(currentGrill, itemsToGrill())) break;
 

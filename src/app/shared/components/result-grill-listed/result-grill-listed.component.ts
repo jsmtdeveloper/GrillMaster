@@ -13,5 +13,11 @@ export class ResultGrillListedComponent {
   /**Final result of the grill */
   @Input() resultGrill: MenuGrill[] = [];
 
+  menuSelected?: MenuGrill;
+
   constructor() {}
+
+  handlerClickSeeDetails(menuGrill: MenuGrill) {
+    this.menuSelected = menuGrill;
+  }
 }
