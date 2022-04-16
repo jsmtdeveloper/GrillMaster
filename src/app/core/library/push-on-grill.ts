@@ -1,10 +1,10 @@
 import { ItemGrill } from '../models/interface/grill/item-grill';
 import { PushItemToBoarParams } from '../models/types/push-item-to-grill-params';
-import { fitsOnGrill } from './FitsOnGrill';
+import { fitsOnGrill } from './fits-on-grill';
 import {
   getItemIdPerEachQuantity,
   getItemSizeCheckingRotation
-} from './ItemsProvider';
+} from './items-provider';
 
 /**
  * Try to place a list of items in a grill

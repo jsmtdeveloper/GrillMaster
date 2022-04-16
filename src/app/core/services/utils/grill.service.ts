@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { getNewGrill } from '@app/core/library/GrillProvider';
-import { getCurrentItems } from '@app/core/library/ItemsProvider';
-import { placeOnGrill } from '@app/core/library/PushOnGrill';
+import { getNewGrill } from '@app/core/library/grill-provider';
+import { getCurrentItems } from '@app/core/library/items-provider';
+import { placeOnGrill } from '@app/core/library/push-on-grill';
 import { mapMenuToMenuGrill } from '@app/core/mappers/menu-to-menu-grill';
 import { Menu } from '@app/core/models/interface/entities/menu';
 import { ItemGrill } from '@app/core/models/interface/grill/item-grill';
 import { MenuGrill } from '@app/core/models/interface/grill/menu-grill';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { GrillMenuApiService } from '../api/grill-menu-api.service';
 
