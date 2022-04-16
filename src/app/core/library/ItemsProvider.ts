@@ -17,9 +17,9 @@ export function getCurrentItems(menu: Menu): ItemGrill[] {
 }
 
 /**
- * get the size of the item if its straigth or rotated
- * @param {ItemGrill} item item we want to get size
- * @returns the correct length and width of the item
+ * Get the size of the item if its straigth or rotated
+ * @param {ItemGrill} item Item we want to get size
+ * @returns The correct length and width of the item
  */
 export function getItemSizeCheckingRotation(item: ItemGrill) {
   const lengthItem = item.rotated ? item.width : item.length;
@@ -29,8 +29,8 @@ export function getItemSizeCheckingRotation(item: ItemGrill) {
 
 /**
  * Creates an id with the item's Id and the current quantity
- * @param {ItemGrill} item item we want to get an Id
- * @returns unique Id for the item
+ * @param {ItemGrill} item Item we want to get an Id
+ * @returns Unique Id for the item
  */
 export function getItemIdPerEachQuantity(item: ItemGrill) {
   return `${item.$id}-${item.quantity}`;

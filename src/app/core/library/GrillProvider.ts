@@ -11,7 +11,7 @@ export function getNewGrill(): Grill {
 
 /**
  * Creates a bidimensional array of strings en base of DEFAULT_SIZE_GRILL sizes
- * @returns A new grill
+ * @returns A new grillSpace
  */
 function createDefaultGrill(): string[][] {
   let grillWidth = [] as Array<string>;

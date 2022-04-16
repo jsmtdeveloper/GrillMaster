@@ -10,9 +10,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { GrillMenuApiService } from '../api/grill-menu-api.service';
 
-/**
- * Service for manage all the menus and items of the grill
- */
+/** Service for manage all the menus and items of the grill*/
 @Injectable({
   providedIn: 'root'
 })
@@ -31,9 +29,7 @@ export class GrillService {
    */
   constructor(private readonly _grillMenuApiService: GrillMenuApiService) {}
 
-  /**
-   * Try to get the grill's menus and then call setData method
-   */
+  /** Try to get the grill's menus and then call setData method*/
   loadData() {
     this._grillMenuApiService
       .getGrillMenu()

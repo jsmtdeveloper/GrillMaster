@@ -4,10 +4,10 @@ import { FitsOnGrillParams } from '../models/types/fits-on-grill-params';
 import { EMPTY_VALUE } from './default-value';
 
 /**
- * Check if the item fits on the grill and on which width and length
+ * Check if the item fits on the grill and where
  * @param {ItemGrill} item Item than we want to place on the grill
  * @param {string[][]} grillSpace Grill where we want to place the items
- * @returns if the item fits and where
+ * @returns If the item fits and where it does
  */
 export function fitsOnGrill(
   item: ItemGrill,
@@ -33,7 +33,7 @@ export function fitsOnGrill(
 }
 
 /**
- * Check if a rotated item fits on the grill and on which width and length
+ * Check if a rotated item fits on the grill and where
  * @param {number} length Length of the item
  * @param {number} width Width of the item
  * @param {string[][]} grillSpace Grill where we want to place the items
@@ -52,7 +52,7 @@ function checkFitsRotated(
 }
 
 /**
- * Check if a item fits on the grill and on which width and length
+ * Check if a item fits on the grill and where
  * @param {number} width Width of the item
  * @param {number} length Length of the item
  * @param {string[][]} grillSpace Grill where we want to place the items
@@ -71,7 +71,7 @@ function checkFitsStraigth(
 }
 
 /**
- * finds the exactly slot where with can place or item on the grill
+ * Finds the exactly slot where we can place the item on the grill
  * @param {number} itemWidth Width of the item
  * @param {number} itemLength Length of the item
  * @param {string[][]} grillSpace Grill where we want to place the items
