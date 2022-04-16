@@ -9,17 +9,10 @@ import { EMPTY_VALUE } from './default-value';
  * @param {string[][]} grillSpace Grill where we want to place the items
  * @returns If the item fits and where it does
  */
-export function fitsOnGrill(
-  item: ItemGrill,
-  grillSpace: string[][]
-): FitsOnGrill {
+export function fitsOnGrill(item: ItemGrill, grillSpace: string[][]): FitsOnGrill {
   let { width, length } = item;
 
-  const fitsStraigth: FitsOnGrill = checkFitsStraigth(
-    width,
-    length,
-    grillSpace
-  );
+  const fitsStraigth: FitsOnGrill = checkFitsStraigth(width, length, grillSpace);
   if (fitsStraigth.fits) return fitsStraigth;
 
   const fitsRotated: FitsOnGrill = checkFitsRotated(length, width, grillSpace);
@@ -38,11 +31,7 @@ export function fitsOnGrill(
  * @param {string[][]} grillSpace Grill where we want to place the items
  * @returns If the item fits and where it does
  */
-function checkFitsRotated(
-  length: number,
-  width: number,
-  grillSpace: string[][]
-): FitsOnGrill {
+function checkFitsRotated(length: number, width: number, grillSpace: string[][]): FitsOnGrill {
   const fitsOnGrillITemRotated: FitsOnGrillParams = {
     itemWidth: length,
     itemLength: width,
@@ -58,11 +47,7 @@ function checkFitsRotated(
  * @param {string[][]} grillSpace Grill where we want to place the items
  * @returns If the item fits and where it does
  */
-function checkFitsStraigth(
-  width: number,
-  length: number,
-  grillSpace: string[][]
-): FitsOnGrill {
+function checkFitsStraigth(width: number, length: number, grillSpace: string[][]): FitsOnGrill {
   const fitsOnGrill: FitsOnGrillParams = {
     itemWidth: width,
     itemLength: length,
@@ -78,28 +63,16 @@ function checkFitsStraigth(
  * @param {string[][]} grillSpace Grill where we want to place the items
  * @returns If the item fits and where it does
  */
-function checkFitsOnGrill({
-  itemWidth,
-  itemLength,
-  grillSpace
-}: FitsOnGrillParams): FitsOnGrill {
+function checkFitsOnGrill({ itemWidth, itemLength, grillSpace }: FitsOnGrillParams): FitsOnGrill {
   for (const [indexLengthGrill, lengthGrill] of grillSpace.entries()) {
     const indexWidthGrill = lengthGrill.findIndex((w) => w === EMPTY_VALUE);
 
     if (indexWidthGrill !== -1) {
       let remainingLength = itemLength;
       let remainingwidth = itemWidth;
-      for (
-        let indexLength = indexLengthGrill;
-        indexLength < grillSpace.length && remainingLength > 0;
-        indexLength++
-      ) {
+      for (let indexLength = indexLengthGrill; indexLength < grillSpace.length && remainingLength > 0; indexLength++) {
         remainingwidth = itemWidth;
-        for (
-          let indexWidthTmp = indexWidthGrill;
-          indexWidthTmp < grillSpace[indexLength].length && remainingwidth > 0;
-          indexWidthTmp++
-        ) {
+        for (let indexWidthTmp = indexWidthGrill; indexWidthTmp < grillSpace[indexLength].length && remainingwidth > 0; indexWidthTmp++) {
           const placeValue = grillSpace[indexLength][indexWidthTmp];
           if (placeValue !== EMPTY_VALUE) break;
 

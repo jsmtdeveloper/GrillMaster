@@ -1,10 +1,7 @@
 import { ItemGrill } from '../models/interface/grill/item-grill';
 import { PushItemToBoarParams } from '../models/types/push-item-to-grill-params';
 import { fitsOnGrill } from './fits-on-grill';
-import {
-  getItemIdPerEachQuantity,
-  getItemSizeCheckingRotation
-} from './items-provider';
+import { getItemIdPerEachQuantity, getItemSizeCheckingRotation } from './items-provider';
 
 /**
  * Try to place a list of items in a grill
@@ -42,12 +39,7 @@ function placeItemOnGrill(item: ItemGrill, grillSpace: string[][]): void {
  * @param {ItemGrill} item Item than we gonna push on the grill
  * @param {string[][]} grillSpace Grill where we want to push the items
  */
-function pushItemToGrill({
-  indexWidth: widthStart,
-  indexLength: lengthStart,
-  item,
-  grillSpace
-}: PushItemToBoarParams): void {
+function pushItemToGrill({ indexWidth: widthStart, indexLength: lengthStart, item, grillSpace }: PushItemToBoarParams): void {
   const { lengthItem, widthItem } = getItemSizeCheckingRotation(item);
   const id = getItemIdPerEachQuantity(item);
 

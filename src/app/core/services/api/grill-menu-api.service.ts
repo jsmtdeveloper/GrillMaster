@@ -13,8 +13,7 @@ import { Observable, map } from 'rxjs';
 })
 export class GrillMenuApiService {
   /** Constant with the url base of the API */
-  private readonly baseUrlApi =
-    'https://isol-grillassessment.azurewebsites.net/api';
+  private readonly baseUrlApi = 'https://isol-grillassessment.azurewebsites.net/api';
 
   /**
    * Constructor of the service, inject all the services we need
@@ -27,8 +26,6 @@ export class GrillMenuApiService {
    * @returns An Observable with an arrays of instance of Menu
    */
   getGrillMenu(): Observable<Menu[]> {
-    return this._httpClient
-      .get<MenuFromApi[]>(`${this.baseUrlApi}/GrillMenu`)
-      .pipe(map((res) => res.map(mapMenuFromApiToMenu)));
+    return this._httpClient.get<MenuFromApi[]>(`${this.baseUrlApi}/GrillMenu`).pipe(map((res) => res.map(mapMenuFromApiToMenu)));
   }
 }

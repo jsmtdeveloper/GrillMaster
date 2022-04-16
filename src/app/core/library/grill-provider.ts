@@ -19,6 +19,7 @@ function createDefaultGrill(): string[][] {
 
   grillWidth.length = DEFAULT_SIZE_GRILL.width;
   grillWidth.fill(EMPTY_VALUE);
+
   for (let index = 0; index < DEFAULT_SIZE_GRILL.length; index++) {
     grillLength.push([...grillWidth]);
   }

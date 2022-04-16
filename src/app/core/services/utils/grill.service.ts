@@ -16,12 +16,9 @@ import { GrillMenuApiService } from '../api/grill-menu-api.service';
 })
 export class GrillService {
   /** Private variable where we save our grill's menus from the api */
-  private _grillMenuList: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(
-    []
-  );
+  private _grillMenuList: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>([]);
   /** Read only variable of our grill's menus as an Observable */
-  readonly grillMenuList$: Observable<Menu[]> =
-    this._grillMenuList.asObservable();
+  readonly grillMenuList$: Observable<Menu[]> = this._grillMenuList.asObservable();
 
   /**
    * Constructor of the service, inject all the services we need
@@ -31,9 +28,7 @@ export class GrillService {
 
   /** Try to get the grill's menus and then call setData method*/
   loadData() {
-    this._grillMenuApiService
-      .getGrillMenu()
-      .subscribe((response) => this.setData(response));
+    this._grillMenuApiService.getGrillMenu().subscribe((response) => this.setData(response));
   }
 
   /**

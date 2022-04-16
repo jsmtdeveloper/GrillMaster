@@ -12,13 +12,7 @@ import { PagesModule } from './pages/pages.module';
  */
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    CoreModule,
-    SharedModule,
-    BrowserModule,
-    AppRoutingModule,
-    PagesModule
-  ],
+  imports: [CoreModule, SharedModule, BrowserModule, AppRoutingModule, PagesModule],
   providers: [],
   bootstrap: [AppComponent]
 })

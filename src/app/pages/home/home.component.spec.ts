@@ -9,14 +9,10 @@ describe('HomeComponent', () => {
 
   it('Should have the docs and swagger links ', async () => {
     await render(HomeComponent);
-    const docsLink =
-      'http://isol-grillassessment.azurewebsites.net/swagger/docs/v1';
+    const docsLink = 'http://isol-grillassessment.azurewebsites.net/swagger/docs/v1';
     expect(screen.getByText(docsLink).getAttribute('href')).toBe(docsLink);
 
-    const swaggerLink =
-      'http://isol-grillassessment.azurewebsites.net/swagger/ui/index';
-    expect(screen.getByText(swaggerLink).getAttribute('href')).toBe(
-      swaggerLink
-    );
+    const swaggerLink = 'http://isol-grillassessment.azurewebsites.net/swagger/ui/index';
+    expect(screen.getByText(swaggerLink).getAttribute('href')).toBe(swaggerLink);
   });
 });

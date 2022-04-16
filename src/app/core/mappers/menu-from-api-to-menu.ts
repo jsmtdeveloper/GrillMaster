@@ -23,9 +23,7 @@ export function mapMenuFromApiToMenu(menuFromApi: MenuFromApi): Menu {
  * @param {ItemFromApi[]} itemFromApi An array of instance of ItemFromApi
  * @returns An array of instance of Item
  */
-export function mapItemFromApiListToItemList(
-  itemFromApi: ItemFromApi[]
-): Item[] {
+export function mapItemFromApiListToItemList(itemFromApi: ItemFromApi[]): Item[] {
   return itemFromApi.map((item) => {
     const { Id, $id, Duration, Length, Name, Quantity, Width } = item;
     return {
