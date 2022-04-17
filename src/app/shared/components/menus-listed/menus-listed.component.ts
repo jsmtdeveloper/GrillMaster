@@ -13,6 +13,4 @@ export class MenusListedComponent {
   @Input() loading: boolean = true;
   /** Read only variable of our grill's menus as an Observable */
   @Input() grillMenuList: Menu[] | null = null;
-
-  constructor() {}
 }

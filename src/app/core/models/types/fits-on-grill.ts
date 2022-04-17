@@ -3,8 +3,8 @@
  * @example
  * {fits: boolean;indexWidth?: number;indexLength?: number}
  */
-export interface FitsOnGrill {
+export type FitsOnGrill = {
   fits: boolean;
   indexWidth?: number;
   indexLength?: number;
-}
+};

@@ -2,12 +2,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { ItemGrill } from '@app/core/models/interface/grill/item-grill';
 import { ItemColor } from '../../core/models/types/item-id-color';
 
-const DEFAULT_SCALE = 9;
+/** Constant with the default color for the items if they dont get one*/
 const DEFAULT_ITEM_COLOR = '#ccc';
+
+/**Definition of the pipe to get the correct styles for each item */
 @Pipe({
   name: 'styleItemPreview'
 })
 export class StyleItemPreviewPipe implements PipeTransform {
+  /**
+   * Creates all the styles than the item need to be properly printed on the grill preview
+   * @param {ItemGrill}item item than we want to get the styles from
+   * @param {ItemColor[]}currentItemsColors array with all the colours assigned per item id
+   * @returns An object with the corrects styles or empty if something went wrong
+   */
   transform(item: ItemGrill, currentItemsColors: ItemColor[]) {
     const dataPrepared = this.prepareGridColumnData(item);
     if (!dataPrepared) return {};
@@ -27,6 +35,11 @@ export class StyleItemPreviewPipe implements PipeTransform {
     };
   }
 
+  /**
+   * Prepare the start and end cordinades
+   * @param {ItemGrill} item The item where we want to get the coordinades from
+   * @returns The start and end cordinades
+   */
   private prepareGridColumnData(item: ItemGrill) {
     if (item.y == undefined || item.x == undefined) return null;
     const { x, y, rotated, width, length } = item;

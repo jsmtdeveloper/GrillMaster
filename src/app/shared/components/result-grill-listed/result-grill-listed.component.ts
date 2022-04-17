@@ -14,18 +14,23 @@ export class ResultGrillListedComponent {
   @Input() totalRounds: number = 0;
   /**Final result of the grill */
   @Input() resultGrill: MenuGrill[] = [];
-
+  /**Event to connect with the parent component */
   @Output() showDetailsEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+  /**Current menu selected */
   menuSelected?: MenuGrill;
 
-  constructor() {}
-
+  /**
+   * handle the 'see details' button, assign the current menu and emits event to parent
+   * @param {MenuGrill} menuGrill the current menu we want to see on detail
+   */
   handlerClickSeeDetails(menuGrill: MenuGrill) {
     this.menuSelected = menuGrill;
     this.showDetailsEvent.emit(true);
   }
 
+  /**
+   * handle the 'Go back' button, clean the current menu and emits event to parent
+   */
   handlerClickGoBack() {
     this.menuSelected = undefined;
     this.showDetailsEvent.emit(false);
