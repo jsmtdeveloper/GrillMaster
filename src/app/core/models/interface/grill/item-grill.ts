@@ -5,4 +5,6 @@ export interface ItemGrill extends Item {
   grilled: boolean;
   rotated: boolean;
   canBeGrill: boolean;
+  y?: number;
+  x?: number;
 }

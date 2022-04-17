@@ -50,6 +50,8 @@ function pushItemToGrill({ indexWidth: widthStart, indexLength: lengthStart, ite
     const widthEnd = widthStart + widthItem;
     for (let index1 = widthStart; index1 < widthEnd; index1++) {
       grill.grillSpace[index][index1] = $id;
+      item.y = lengthStart;
+      item.x = widthStart;
     }
   }
   item.grilled = true;

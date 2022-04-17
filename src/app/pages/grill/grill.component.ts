@@ -15,6 +15,8 @@ export class GrillComponent implements OnInit {
   /**Final result of the grill */
   resultGrill: MenuGrill[] = [];
 
+  showElement: boolean = true;
+
   /**
    * Constructs the component, and create a subscription with the grillMenuList Observable of GrillService to show o hide the loader
    * @param {GrillService} grillService  Injected services
@@ -54,5 +56,9 @@ export class GrillComponent implements OnInit {
     return resultGrill.reduce((previousValue, currentValue) => {
       return previousValue + currentValue.rounds.length;
     }, 0);
+  }
+
+  handlerShowDetails(showDetails: boolean) {
+    this.showElement = !showDetails;
   }
 }

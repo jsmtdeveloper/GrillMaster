@@ -1,0 +1,41 @@
+.grill-preview {
+  width: 30em;
+  height: 20em;
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  border: 1px solid #787676;
+  border-radius: 0.5em;
+  background-color: #ccc;
+}
+
+.container-grill-preview {
+  display: inline-table;
+}
+
+.items-colors {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: beige;
+  padding: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid bisque;
+  border-radius: 1em;
+  opacity: 95%;
+  bottom: 5rem;
+}
+
+.items-colors small {
+  margin-left: 5px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.box-color {
+  display: inline-flex;
+  height: 9px;
+  width: 9px;
+  border-radius: 2em;
+}

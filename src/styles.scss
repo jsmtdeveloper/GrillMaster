@@ -17,3 +17,10 @@ body {
 .center-text {
   text-align: center;
 }
+
+button {
+  border-radius: 1em;
+  border: 1px solid gray;
+  box-shadow: 2px 1px #787676;
+  padding: 5px 15px 5px 15px !important;
+}

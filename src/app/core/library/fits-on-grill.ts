@@ -64,18 +64,21 @@ function checkFitsStraigth(width: number, length: number, grillSpace: string[][]
  * @returns If the item fits and where it does
  */
 function checkFitsOnGrill({ itemWidth, itemLength, grillSpace }: FitsOnGrillParams): FitsOnGrill {
-  for (const [indexLengthGrill, lengthGrill] of grillSpace.entries()) {
-    const indexWidthGrill = lengthGrill.findIndex((w) => w === EMPTY_VALUE);
+  for (const [freeLengthIndex, lengthGrill] of grillSpace.entries()) {
+    const freeWidthIndex = lengthGrill.findIndex((w) => w === EMPTY_VALUE);
 
-    if (indexWidthGrill !== -1) {
+    if (freeWidthIndex !== -1) {
       let remainingLength = itemLength;
       let remainingwidth = itemWidth;
-      for (let indexLength = indexLengthGrill; indexLength < grillSpace.length && remainingLength > 0; indexLength++) {
-        remainingwidth = itemWidth;
-        for (let indexWidthTmp = indexWidthGrill; indexWidthTmp < grillSpace[indexLength].length && remainingwidth > 0; indexWidthTmp++) {
-          const placeValue = grillSpace[indexLength][indexWidthTmp];
-          if (placeValue !== EMPTY_VALUE) break;
 
+      for (let indexLength = freeLengthIndex; indexLength < grillSpace.length && remainingLength > 0; indexLength++) {
+        remainingwidth = itemWidth;
+        for (let indexWidthTmp = freeWidthIndex; indexWidthTmp < grillSpace[indexLength].length && remainingwidth > 0; indexWidthTmp++) {
+          const placeValue = grillSpace[indexLength][indexWidthTmp];
+          if (placeValue !== EMPTY_VALUE) {
+            ({ remainingLength, remainingwidth } = stopCurrentLoop(remainingLength, remainingwidth));
+            break;
+          }
           remainingwidth--;
         }
         remainingLength--;
@@ -84,11 +87,23 @@ function checkFitsOnGrill({ itemWidth, itemLength, grillSpace }: FitsOnGrillPara
       if (fits)
         return {
           fits,
-          indexWidth: indexWidthGrill,
-          indexLength: indexLengthGrill
+          indexWidth: freeWidthIndex,
+          indexLength: freeLengthIndex
         };
     }
   }
 
   return { fits: false };
+}
+
+/**
+ * Finds the exactly slot where we can place the item on the grill
+ * @param {number} remainingLength Width of the item
+ * @param {number} remainingwidth Length of the item
+ * @returns the variables wich controle the loop with a falsy result to stop it
+ */
+function stopCurrentLoop(remainingLength: number, remainingwidth: number) {
+  remainingLength = -1;
+  remainingwidth = -1;
+  return { remainingLength, remainingwidth };
 }
