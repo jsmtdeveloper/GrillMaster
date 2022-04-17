@@ -110,7 +110,7 @@ This is more or less the most important things of this project's structure. If y
 
 ## 💻 Built with
 Technologies used in the project: 
-* TypeScript 
+* TypeScript & JavaScript
 * Angular 
 * Html 
 * Css 
@@ -122,6 +122,8 @@ Technologies used in the project:
 * Jest
 * Npm
 * Visual Studio Code
+* Prettier
+* ESLint & TSLint
 ----
 🛡️ This project is Free for all!
 

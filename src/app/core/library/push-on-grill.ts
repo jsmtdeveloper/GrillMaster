@@ -43,13 +43,12 @@ function placeItemOnGrill(item: ItemGrill, grill: Grill): void {
 function pushItemToGrill({ indexWidth: widthStart, indexLength: lengthStart, item, grill }: PushItemToBoarParams): void {
   const { lengthItem, widthItem } = getItemSizeCheckingRotation(item);
   const { $id } = item;
-  //const id = getItemIdPerEachQuantity(item);
   const lengthEnd = lengthStart + lengthItem;
 
-  for (let index = lengthStart; index < lengthEnd; index++) {
+  for (let currentLength = lengthStart; currentLength < lengthEnd; currentLength++) {
     const widthEnd = widthStart + widthItem;
-    for (let index1 = widthStart; index1 < widthEnd; index1++) {
-      grill.grillSpace[index][index1] = $id;
+    for (let currentWidth = widthStart; currentWidth < widthEnd; currentWidth++) {
+      grill.grillSpace[currentLength][currentWidth] = $id;
       item.y = lengthStart;
       item.x = widthStart;
     }

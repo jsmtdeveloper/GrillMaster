@@ -44,7 +44,6 @@ export class GrillService {
     for (const currentMenu of currentMenuList) {
       menusResult.push(this.grillSingleMenu(currentMenu));
     }
-    // menusResult.push(this.grillSingleMenu(currentMenuList[1]));
     return menusResult;
   }
 
