@@ -1,27 +1,87 @@
-# AngularWebGenerator
+![project-image](https://socialify.git.ci/jsmtdeveloper/GrillMaster/image?font=Bitter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Light)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+# 🤞Assessment Grill Master
 
-## Development server
+Grill master is a project to solve the main task of ISolutions's assessment.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project was generated with Angular CLI version 13.2.3.
 
-## Code scaffolding
+## 🤷‍♂️Scope
+Help our master barbecue chef to optimize order in which barbecue items are grilled. Since the
+space on the grill is limited and different grill items have different sizes, you need to calculate
+the optimal schedule for grilling. The aim is to optimize the time for barbecuing the entire
+menu. The grill measures 20cm x 30cm. The cooking time is the same for all barbecue items.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🚀 Demo
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Direct link for a demo of this project deployed with vercel: [https://grill-master.vercel.app/home](https://grill-master.vercel.app/home)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🤳 Project Screenshots:
+* Home 
+* Loading the menus from API 
+* List of menus we must to grill
+* After grill information rounds 
+* See detailed menu grill
 
-## Running end-to-end tests
+<img src="https://user-images.githubusercontent.com/51481240/163711877-46e7e8ca-7d77-43fb-a4b4-33e67b816cce.png" width="300"><img src="https://user-images.githubusercontent.com/51481240/163711907-0561792f-755d-4cb3-b537-e241dfab4e36.png" width="300">
+<img src="https://user-images.githubusercontent.com/51481240/163711925-0373acd0-51b8-4394-9d65-ef663f8c11bd.png" width="300">
+<img src="https://user-images.githubusercontent.com/51481240/163711934-327f3537-3009-409e-955f-b2d71bf59a4a.png" width="300">
+<img src="https://user-images.githubusercontent.com/51481240/163711968-0245ff2c-bc0d-4766-afca-e1cc4f2dc9ff.png" width="300">
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🧐 Features
 
-## Further help
+Here're some of the project's best features: 
+* Help our master barbecue chef to optimize order in which barbecue items are grilled 
+* Optimize the time for barbecuing the entire menu 
+* Calculate the total rounds and total rounds per menu 
+* Show detailed the final grill result per round
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🛠️ Installation Steps & More!
+
+1\. Installation of all packages of the project. 
+Use the package manager [npm](https://docs.npmjs.com/cli/v6/commands/npm-install) to install all you need to run this project. Go to the base path (where the package.json its) and execute the next command
+
+```bash
+npm install
+```
+2\. Run all the tests.
+This command will execute all the unit tests than there are in the project. (Using Jest + testing-library)
+ 
+```bash
+npm run tests
+```
+3\. Build.
+This command will create a production compilation ready to deploy
+ 
+```bash
+ng build
+```
+
+4\. Generate a new Documentation version.
+After doing some modifications on the code, run the next command to update the documentation 
+ 
+```bash
+npm run compodoc
+```
+
+## 💻 Built with
+Technologies used in the project: 
+* TypeScript 
+* Angular 
+* Html 
+* Css 
+* Compodoc 
+* Vercel 
+* Github 
+* Mini.css 
+* Rxjs 
+* Jest
+* Npm
+* Visual Studio Code
+----
+🛡️ This project is Free for all!
+
+💖 Like my work?
+I hope you do!
