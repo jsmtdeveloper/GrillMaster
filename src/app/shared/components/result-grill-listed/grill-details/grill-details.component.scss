@@ -1,6 +1,6 @@
 .grill-preview {
-  width: 30em;
-  height: 20em;
+  width: 40em;
+  height: 27em;
   display: grid;
   grid-template-columns: repeat(30, 1fr);
   grid-template-rows: repeat(20, 1fr);
@@ -17,14 +17,14 @@
   position: fixed;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 20px;
   background-color: beige;
-  padding: 2px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 2px 15px;
   border: 1px solid bisque;
   border-radius: 1em;
   opacity: 95%;
   bottom: 5rem;
+  padding-bottom: 8px;
 }
 
 .items-colors small {
@@ -35,7 +35,7 @@
 
 .box-color {
   display: inline-flex;
-  height: 9px;
-  width: 9px;
+  height: 11px;
+  width: 11px;
   border-radius: 2em;
 }
