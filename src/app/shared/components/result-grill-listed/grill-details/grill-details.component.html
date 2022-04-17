@@ -23,9 +23,8 @@
     </h4>
     <div class="container-grill-preview">
       <div class="grill-preview">
-        <span [ngStyle]="item | styleItemPreview:currentItemsColors " title="{{item.name}}"
-          *ngFor="let item of round.itemsOnGrill">
-          <small>{{item.width}} x {{item.length}}</small>
+        <span [ngStyle]="item | styleItemPreview:currentItemsColors "
+          title="{{item.name}} - {{item.width}}x{{item.length}}" *ngFor="let item of round.itemsOnGrill">
         </span>
       </div>
     </div>
