@@ -2,8 +2,6 @@
 
 # 🤞Assessment Grill Master
 
-Grill master is a project to solve the main task of ISolutions's assessment.
-
 This project was generated with Angular CLI version 13.2.3.
 
 ## 🤷‍♂️Scope
