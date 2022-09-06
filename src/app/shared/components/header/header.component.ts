@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoordenadasService } from '@app/core/services/utils/coordenadas.service';
 
 /**
  * App header definition
@@ -9,8 +10,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  constructor(public coordenadasService: CoordenadasService) {}
   /**Title of the application */
   title = 'Grill Master - Jeison stiven';
-  public latitude: number = 39.5065;
-  public longitude: number = -0.41009;
 }
