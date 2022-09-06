@@ -1,4 +1,7 @@
 <header class="sticky">
   <span>latitud: <input [(ngModel)]="coordenadasService.latitude"> </span><br>
   <span>longitud: <input [(ngModel)]="coordenadasService.longitude"></span>
+  <br>
+  <button *ngIf="coordenadasService.show" (click)="coordenadasService.onToggleShow()">hide</button>
+  <button *ngIf="!coordenadasService.show" (click)="coordenadasService.onToggleShow()">show</button>
 </header>

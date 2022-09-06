@@ -1,4 +1,4 @@
-<div class="camara-vr">
+<div *ngIf="coordenadasService.show" class="camara-vr">
   <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
     <a-text value="Hola carlos" look-at="[gps-camera]" scale="2 2 1" position="-2 2 -4" [gps-entity-place]="coordenadasService.currentPlace"></a-text>
     <a-camera gps-camera rotation-reader> </a-camera>
