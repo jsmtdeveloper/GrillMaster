@@ -1,12 +1,6 @@
-<a-scene
-vr-mode-ui="enabled: false"
-arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
->
-<a-text
-  value="Hola carlos"
-  look-at="[gps-camera]"
-  scale="120 120 120"
-  gps-entity-place="latitude: 39.50650; longitude: -0.41009;"
-></a-text>
-<a-camera gps-camera rotation-reader > </a-camera>
-</a-scene>
+<div class="camara-vr">
+  <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
+    <a-text value="Hola carlos" look-at="[gps-camera]" scale="120 120 120" [gps-entity-place]="coordenadasService.currentPlace"></a-text>
+    <a-camera gps-camera rotation-reader> </a-camera>
+  </a-scene>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CoordenadasService } from '@app/core/services/utils/coordenadas.service';
 
 /**
  * Home component definition
@@ -8,4 +9,6 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor(public coordenadasService: CoordenadasService) {}
+}
